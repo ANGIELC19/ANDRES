@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¡Feliz Cumpleaños Animado!</title>
+    <style>
+        body {
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            text-align: center;
+            background-color: #f0f0f0;
+            overflow: hidden;
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            color: #0c28c5;
+            font-size: 3em;
+            animation: shine 2s linear infinite;
+        }
+        @keyframes shine {
+            0% { text-shadow: 0 0 10px #0c28c5, 0 0 20px #0c28c5, 0 0 30px #0c28c5; }
+            50% { text-shadow: 0 0 20px #0c28c5, 0 0 30px #0c28c5, 0 0 40px #0c28c5; }
+            100% { text-shadow: 0 0 10px #0c28c5, 0 0 20px #0c28c5, 0 0 30px #0c28c5; }
+        }
+        .cake-image {
+            width: 300px;
+            height: 300px;
+            margin: 20px auto;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+        .cake-image:hover {
+            transform: scale(1.1);
+        }
+        .balloon {
+            position: absolute;
+            width: 40px;
+            height: 50px;
+            border-radius: 50%;
+            animation: float 5s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(10deg); }
+        }
+        #message {
+            font-size: 1.5em;
+            margin: 20px 0;
+        }
+        button {
+            font-size: 1em;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: #f0f0f0;
+            animation: confetti-fall 5s linear infinite;
+        }
+        @keyframes confetti-fall {
+            0% { transform: translateY(-100vh) rotate(0deg); }
+            100% { transform: translateY(100vh) rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <h1>¡Feliz Cumpleaños uwu!</h1>
+    <img src="imagenes.img/ddc89cae-e7cb-4c65-9186-3c9cb16ef858 (1).png" alt="Torta de cumpleaños" class="cake-image" onclick="agrandarImagen(this)">
+    <p id="message">¡Que tengas un día maravilloso lleno de alegría y felicidad!</p>
+    <button onclick="cambiarMensaje()">Cambiar mensaje</button>
+
+    <script>
+        function crearGlobo() {
+            const globo = document.createElement('div');
+            globo.className = 'balloon';
+            globo.style.left = Math.random() * window.innerWidth + 'px';
+            globo.style.top = window.innerHeight + 'px';
+            globo.style.backgroundColor = `hsl(${Math.random()*360}, 100%, 50%)`;
+            document.body.appendChild(globo);
+
+            setTimeout(() => {
+                globo.remove();
+            }, 5000);
+        }
+
+        function crearConfeti() {
+            const confeti = document.createElement('div');
+            confeti.className = 'confetti';
+            confeti.style.left = Math.random() * window.innerWidth + 'px';
+            confeti.style.backgroundColor = `hsl(${Math.random()*360}, 100%, 50%)`;
+            document.body.appendChild(confeti);
+
+            setTimeout(() => {
+                confeti.remove();
+            }, 5000);
+        }
+
+        setInterval(crearGlobo, 300);
+        setInterval(crearConfeti, 100);
+
+        function cambiarMensaje() {
+            const mensajes = [
+                "¡Que todos tus sueños se hagan realidad!",
+                "Disfruta tu día especial al máximo",
+                "Otro año más sabio y más increíble",
+                "¡Que la alegría te acompañe siempre!",
+                "Celebra como si no hubiera mañana",
+                "YA ESTAS VIEJOOOOOOO",
+                "Feliz 22"
+            ];
+            const mensaje = mensajes[Math.floor(Math.random() * mensajes.length)];
+            document.getElementById('message').textContent = mensaje;
+        }
+
+        function agrandarImagen(imagen) {
+            imagen.style.transform = 'scale(1.5)';
+            setTimeout(() => {
+                imagen.style.transform = 'scale(1)';
+            }, 300);
+        }
+    </script>
+</body>
+</html>
